@@ -1,10 +1,11 @@
 package net.javaguides.springboot.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import net.javaguides.springboot.model.Passenger;
-import net.javaguides.springboot.repository.PassengerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,8 +26,21 @@ public class BookFlightController {
 		return BookFlightRepository.save(bookFlight);
 	}
 
+	@GetMapping("/dates")
+	public ArrayList<LocalDate> createBookFlight(){
+		ArrayList<LocalDate> dates = new ArrayList<LocalDate>();
+		dates.add(LocalDate.now().plusDays(1));
+		dates.add(LocalDate.now().plusDays(3));
+		dates.add(LocalDate.now().plusDays(8));
+		dates.add(LocalDate.now().plusDays(15));
+		dates.add(LocalDate.now().plusDays(30));
+		dates.add(LocalDate.now().plusDays(38));
+		dates.add(LocalDate.now().plusDays(52));
+		return dates;
+	}
+
 	@PostMapping("/price")
-	public double createEmployee(@RequestBody BookFlight bookFlight) {
+	public double returnDate(@RequestBody BookFlight bookFlight) {
 
 		//Chequear los pasageros con el book id enviado, chequear edad, devolver el numero
 		//Numero pasajeros = Precio + 1000 * num pasajeros

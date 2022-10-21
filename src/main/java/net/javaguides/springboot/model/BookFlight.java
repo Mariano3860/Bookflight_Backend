@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -26,10 +27,10 @@ public class BookFlight {
 	private boolean roundTrip;
 
 	@Column(name = "goDate")
-	private Date goDate;
+	private LocalDate goDate;
 
 	@Column(name = "backDate")
-	private Date backDate;
+	private LocalDate backDate;
 
 	@Column(name = "price")
 	private double price;
@@ -38,7 +39,7 @@ public class BookFlight {
 		
 	}
 
-	public BookFlight(long id, String origen, String destino, boolean roundTrip, Date goDate, Date backDate, double price) {
+	public BookFlight(long id, String origen, String destino, boolean roundTrip, LocalDate goDate, LocalDate backDate, double price) {
 		super();
 		this.origen = origen;
 		this.destino = destino;
@@ -80,19 +81,19 @@ public class BookFlight {
 		this.roundTrip = roundTrip;
 	}
 
-	public Date getGoDate() {
+	public LocalDate getGoDate() {
 		return goDate;
 	}
 
-	public void setGoDate(Date goDate) {
+	public void setGoDate(LocalDate goDate) {
 		this.goDate = goDate;
 	}
 
-	public Date getBackDate() {
+	public LocalDate getBackDate() {
 		return backDate;
 	}
 
-	public void setBackDate(Date backDate) {
+	public void setBackDate(LocalDate backDate) {
 		this.backDate = backDate;
 	}
 

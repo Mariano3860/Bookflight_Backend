@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
 @Table(name = "book")
@@ -15,47 +16,91 @@ public class BookFlight {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name = "first_name")
-	private String firstName;
+	@Column(name = "origen", nullable = false)
+	private String origen;
 
-	@Column(name = "last_name")
-	private String lastName;
+	@Column(name = "destino", nullable = false)
+	private String destino;
 	
-	@Column(name = "email_id", nullable = false)
-	private String emailId;
-	
+	@Column(name = "roundTrip", nullable = false)
+	private boolean roundTrip;
+
+	@Column(name = "goDate")
+	private Date goDate;
+
+	@Column(name = "backDate")
+	private Date backDate;
+
+	@Column(name = "price")
+	private double price;
+
 	public BookFlight() {
 		
 	}
-	
-	public BookFlight(String firstName, String lastName, String emailId) {
+
+	public BookFlight(long id, String origen, String destino, boolean roundTrip, Date goDate, Date backDate, double price) {
 		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.emailId = emailId;
+		this.origen = origen;
+		this.destino = destino;
+		this.roundTrip = roundTrip;
+		this.goDate = goDate;
+		this.backDate = backDate;
+		this.price = price;
 	}
+
 	public long getId() {
 		return id;
 	}
+
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getFirstName() {
-		return firstName;
+
+	public String getOrigen() {
+		return origen;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+
+	public void setOrigen(String origen) {
+		this.origen = origen;
 	}
-	public String getLastName() {
-		return lastName;
+
+	public String getDestino() {
+		return destino;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+
+	public void setDestino(String destino) {
+		this.destino = destino;
 	}
-	public String getEmailId() {
-		return emailId;
+
+	public boolean getRoundTrip() {
+		return roundTrip;
 	}
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
+
+	public void setRoundTrip(boolean tripType) {
+		this.roundTrip = roundTrip;
+	}
+
+	public Date getGoDate() {
+		return goDate;
+	}
+
+	public void setGoDate(Date goDate) {
+		this.goDate = goDate;
+	}
+
+	public Date getBackDate() {
+		return backDate;
+	}
+
+	public void setBackDate(Date backDate) {
+		this.backDate = backDate;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 }

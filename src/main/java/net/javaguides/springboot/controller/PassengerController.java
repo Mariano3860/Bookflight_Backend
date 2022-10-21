@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api/Passenger")
+@RequestMapping("/api/Passenger/")
 public class PassengerController {
 
 	@Autowired
 	private PassengerRepository PassengerRepository;
 
 	// get all employees
-	@PostMapping("/addPassenger")
+	@PostMapping("addPassenger")
 	public Passenger createPassenger(@RequestBody Passenger passenger){
 		return PassengerRepository.save(passenger);
 	}		

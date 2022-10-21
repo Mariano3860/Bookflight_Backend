@@ -14,23 +14,24 @@ import net.javaguides.springboot.repository.BookFlightRepository;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api/BookFlight")
+@RequestMapping("/api/BookFlight/")
 public class BookFlightController {
 
 	@Autowired
-	private BookFlightRepository BookFlightRepository;
-	
-	// get all employees
-	@PostMapping("/addBook")
+	private BookFlightRepository bookFlightRepository;
+
+	@PostMapping("addBook")
 	public BookFlight createBookFlight(@RequestBody BookFlight bookFlight){
-		return BookFlightRepository.save(bookFlight);
+		return bookFlightRepository.save(bookFlight);
 	}
 
-	@GetMapping("/dates")
+	@GetMapping("dates")
 	public ArrayList<LocalDate> createBookFlight(){
 		ArrayList<LocalDate> dates = new ArrayList<LocalDate>();
 		dates.add(LocalDate.now().plusDays(1));
+		dates.add(LocalDate.now().plusDays(2));
 		dates.add(LocalDate.now().plusDays(3));
+		dates.add(LocalDate.now().plusDays(7));
 		dates.add(LocalDate.now().plusDays(8));
 		dates.add(LocalDate.now().plusDays(15));
 		dates.add(LocalDate.now().plusDays(30));
@@ -39,7 +40,7 @@ public class BookFlightController {
 		return dates;
 	}
 
-	@PostMapping("/price")
+	@PostMapping("price")
 	public double returnDate(@RequestBody BookFlight bookFlight) {
 
 		//Chequear los pasageros con el book id enviado, chequear edad, devolver el numero
@@ -52,15 +53,15 @@ public class BookFlightController {
 		double price = 0;
 		if (bookFlight!= null){
 			//Precio por pasajero adulto
-			int passengersA =  BookFlightRepository.getAdultByBookId(bookFlight.getId()).size();
+			int passengersA =  bookFlightRepository.getAdultByBookId(bookFlight.getId()).size();
 			price += 1000*passengersA;
 
 			//Precio por pasajero joven
-			int passengersC =  BookFlightRepository.getChildByBookId(bookFlight.getId()).size();
+			int passengersC =  bookFlightRepository.getChildByBookId(bookFlight.getId()).size();
 			price += 500*passengersC;
 
 			//Precio por maleta
-			ArrayList<Passenger> passLug = (ArrayList<Passenger>) BookFlightRepository.getPassengersLuggageByBookId(bookFlight.getId());
+			ArrayList<Passenger> passLug = (ArrayList<Passenger>) bookFlightRepository.getPassengersLuggageByBookId(bookFlight.getId());
 			Integer numMaletas = 0;
 			for( Passenger p : passLug){
 				numMaletas += p.getLuggage();
@@ -90,41 +91,4 @@ public class BookFlightController {
 	}
 
 }
-
-//	// get employee by id rest api
-//	@GetMapping("/employees/{id}")
-//	public ResponseEntity<BookFlight> getEmployeeById(@PathVariable Long id) {
-//		BookFlight employee = employeeRepository.findById(id)
-//				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
-//		return ResponseEntity.ok(employee);
-//	}
-//
-//	// update employee rest api
-//
-//	@PutMapping("/employees/{id}")
-//	public ResponseEntity<BookFlight> updateEmployee(@PathVariable Long id, @RequestBody BookFlight employeeDetails){
-//		BookFlight employee = employeeRepository.findById(id)
-//				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
-//
-//		employee.setFirstName(employeeDetails.getFirstName());
-//		employee.setLastName(employeeDetails.getLastName());
-//		employee.setEmailId(employeeDetails.getEmailId());
-//
-//		BookFlight updatedEmployee = employeeRepository.save(employee);
-//		return ResponseEntity.ok(updatedEmployee);
-//	}
-//
-//	// delete employee rest api
-//	@DeleteMapping("/employees/{id}")
-//	public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Long id){
-//		BookFlight employee = employeeRepository.findById(id)
-//				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
-//
-//		employeeRepository.delete(employee);
-//		Map<String, Boolean> response = new HashMap<>();
-//		response.put("deleted", Boolean.TRUE);
-//		return ResponseEntity.ok(response);
-//	}
-//
-	
 

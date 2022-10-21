@@ -1,7 +1,9 @@
 package net.javaguides.springboot;
 
 import net.javaguides.springboot.model.BookFlight;
+import net.javaguides.springboot.model.Passenger;
 import net.javaguides.springboot.repository.BookFlightRepository;
+import net.javaguides.springboot.repository.PassengerRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -23,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class ControllerTest {
 
     @Mock
-    private BookFlightRepository bookFlightRepository;
+    private PassengerRepository passengerRepository;
 
     @Autowired
     private MockMvc mockMvc;
@@ -33,22 +35,24 @@ public class ControllerTest {
         MockitoAnnotations.openMocks(this);
     }
 
-//    @Test
-//    void test() throws Exception {
-//        given(bookFlightRepository.save(any(BookFlight.class)))
-//                .willReturn(new BookFlight("Mariano","Rojo","asd@asd.com"));
-//
-//        mockMvc.perform(post("/api/employees").content("{\n" +
-//                "    \"firstName\": \"aa\",\n" +
-//                "    \"lastName\": \"aa\",\n" +
-//                "    \"emailId\": \"\"\n" +
-//                "}").contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(status().is2xxSuccessful())
-//                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(jsonPath("$.firstName").value("aa"))
-//                .andDo(print());
-//    }
+    @Test
+    void test() throws Exception {
+        given(passengerRepository.save(any(Passenger.class)))
+                .willReturn(new Passenger( 1, "Mariano", "Rojo", "Arg", "adult", 1, 1));
 
-
+        mockMvc.perform(post("/api/Passenger/addPassenger").content("{\n" +
+                "    \"id\": \"1\",\n" +
+                "    \"firstName\": \"aa\",\n" +
+                "    \"lastName\": \"aa\",\n" +
+                "    \"nationality\": \"aa\",\n" +
+                "    \"age\": \"adult\",\n" +
+                "    \"luggage\": \"1\",\n" +
+                "    \"bookId\": \"1\",\n" +
+                "}").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.firstName").value("aa"))
+                .andDo(print());
+    }
 
 }

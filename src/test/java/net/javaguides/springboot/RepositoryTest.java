@@ -1,7 +1,9 @@
 package net.javaguides.springboot;
 
 import net.javaguides.springboot.model.BookFlight;
+import net.javaguides.springboot.model.Passenger;
 import net.javaguides.springboot.repository.BookFlightRepository;
+import net.javaguides.springboot.repository.PassengerRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,23 +14,16 @@ import org.springframework.dao.DataIntegrityViolationException;
 class RepositoryTest {
 
     @Autowired
-    private BookFlightRepository bookFlightRepository;
+    private PassengerRepository passengerRepository;
 
-
-//    @Test
-//    void save_PersistANewEmployeeWithProperties() {
-//        BookFlight E = new BookFlight("Mariano","Rojo","asd@asd.com");
-//        BookFlight E2 = bookFlightRepository.save(E);
-//        Assertions.assertNotNull(E2);
-//        Assertions.assertNotNull(E2.getId());
-//        Assertions.assertEquals(E.getFirstName(),E2.getFirstName());
-//        //Assertions.assertEquals(E.getEmailId(),E2.getEmailId());
-//    }
 
     @Test
-    void save_ThrowsDataIntegrityExceptionWhenEmailIsNull() {
-        BookFlight E = new BookFlight();
-        Assertions.assertThrows(DataIntegrityViolationException.class,() -> bookFlightRepository.save(E));
+    void save_PersistANewPassengerWithProperties() {
+        Passenger P = new Passenger( 1, "Mariano", "Rojo", "Arg", "adult", 1, 1);
+        Passenger P2 = passengerRepository.save(P);
+        Assertions.assertNotNull(P2);
+        Assertions.assertNotNull(P2.getFirstName());
+        Assertions.assertEquals(P.getFirstName(),P2.getFirstName());
     }
 
 }

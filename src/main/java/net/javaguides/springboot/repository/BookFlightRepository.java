@@ -13,13 +13,13 @@ import java.util.List;
 @Repository
 public interface BookFlightRepository extends JpaRepository<BookFlight, Long>{
 
-    @Query("Select f from Passenger f where f.bookId = :#{bookId} and f.age = 'adult'")
+    @Query("Select f from Passenger f where f.bookId = :bookId and f.age = 'adult'")
     public List<Passenger> getAdultByBookId(@Param("bookId") long bookId);
 
-    @Query("Select f from Passenger f where f.bookId = :#{bookId} and f.age = 'child'")
+    @Query("Select f from Passenger f where f.bookId = :bookId and f.age = 'child'")
     public List<Passenger> getChildByBookId(@Param("bookId") long bookId);
 
-    @Query("Select f from Passenger f where f.bookId = :#{bookId} and f.luggage > 0")
+    @Query("Select f from Passenger f where f.bookId = :bookId and f.luggage > 0")
     public List<Passenger> getPassengersLuggageByBookId(@Param("bookId") long bookId);
 
 }

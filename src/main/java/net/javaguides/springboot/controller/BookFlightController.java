@@ -43,13 +43,6 @@ public class BookFlightController {
 	@PostMapping("price")
 	public double returnDate(@RequestBody BookFlight bookFlight) {
 
-		//Chequear los pasageros con el book id enviado, chequear edad, devolver el numero
-		//Numero pasajeros = Precio + 1000 * num pasajeros
-		//Chequear lagaje de los pasajero y devolver numero de valijas
-		//Numero de valijas => precio+50*Valijas
-		//RoundTrip = true => Precio*1.8
-		//Destination => Si es 1 => Precio*1.2 , si es 2....
-
 		double price = 0;
 		if (bookFlight!= null){
 			//Precio por pasajero adulto

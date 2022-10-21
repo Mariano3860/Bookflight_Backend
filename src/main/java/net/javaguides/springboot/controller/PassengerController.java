@@ -15,9 +15,8 @@ public class PassengerController {
 	@Autowired
 	private PassengerRepository PassengerRepository;
 
-	// get all employees
 	@PostMapping("addPassenger")
-	public Passenger createPassenger(@RequestBody Passenger passenger){
+	public Passenger createPassenger(Passenger passenger){
 		return PassengerRepository.save(passenger);
 	}		
 

@@ -16,7 +16,6 @@ class RepositoryTest {
     @Autowired
     private PassengerRepository passengerRepository;
 
-
     @Test
     void save_PersistANewPassengerWithProperties() {
         Passenger P = new Passenger( 1, "Mariano", "Rojo", "Arg", "adult", 1, 1);

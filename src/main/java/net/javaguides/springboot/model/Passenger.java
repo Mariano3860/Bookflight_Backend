@@ -25,7 +25,7 @@ public class Passenger {
 	@Column(name = "luggage", nullable = false)
 	private int luggage;
 
-	@Column(name = "bookId", nullable = false)
+	@Column(name = "bookId")
 	private long bookId;
 
 	public Passenger() {
